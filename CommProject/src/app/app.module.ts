@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { AuthModule } from './auth/auth.module'
 
 export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/');
@@ -16,9 +17,10 @@ export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
     AppComponent
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,  
     AppRoutingModule,
     HttpClientModule, 
+    AuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
