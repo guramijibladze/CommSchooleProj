@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -7,15 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private translateService : TranslateService){}
+  constructor(private router:Router){}
 
-  useKa(){
-    this.translateService.use('ka');
-  }
 
-  useEn(){
-    this.translateService.use('en')
-  }
 
   ngOnInit(){
 

@@ -15,9 +15,6 @@ const routes: Routes = [
     {
         path: 'sing-up', component: SignUpComponent,
     },
-  // {
-  //   path: 'catalogue',
-  // }
 ];
 
 @NgModule({

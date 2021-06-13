@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { AuthModule } from './auth/auth.module'
+import { ShellModule } from './shell/shell.module';
 
 export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/');
@@ -21,6 +22,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
     AppRoutingModule,
     HttpClientModule, 
     AuthModule,
+    ShellModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

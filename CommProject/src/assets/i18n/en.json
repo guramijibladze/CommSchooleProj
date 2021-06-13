@@ -1,4 +1,8 @@
 {
-    "HOME": "Home",
-    "APP": "Aplication"
+    "TITLE": "Movie Catalogue",
+    "auth":{
+        "SIGN_IN": "Sign In",
+        "SIGN_UP": "Dign Up"
+    }
+    
 }
