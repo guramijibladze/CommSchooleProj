@@ -1,8 +1,17 @@
 {
     "TITLE": "Movie Catalogue",
+
+    "errors": {
+        "NOT_FOUND": "Page not found"
+    },
+    
     "auth":{
         "SIGN_IN": "Sign In",
-        "SIGN_UP": "Dign Up"
+        "SIGN_UP": "Sign Up",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "REPEAT_PASSWORD": "Repeat Password",
+        "SIGN_OUT": "Sign Out"
     }
     
 }

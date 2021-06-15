@@ -7,20 +7,20 @@
     <section class="py-5 d-flex justify-content-center">
         <form >
             <div class="form-floating mb-2">
-            <input
-                type="email"
-            
-                name="email"
-                class="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-            />
+              <input
+                  type="email"
+                  ngModel
+                  name="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+              />
             <!-- <label for="floatingInput">{{ "auth.EMAIL" | translate }}</label> -->
             </div>
         <div class="form-floating mb-2">
           <input
             type="password"
-          
+            ngModel
             name="password"
             class="form-control"
             id="floatingPassword"
@@ -39,9 +39,9 @@
             "auth.REPEAT_PASSWORD" | translate
           }}</label> -->
         </div>
-        <!-- <button class="w-100 btn btn-lg btn-outline-secondary" type="submit">
+        <button class="w-100 btn btn-lg btn-outline-secondary" type="submit">
           {{ "auth.SIGN_UP" | translate }}
-        </button> -->
+        </button>
       </form>
     </section>
   </main>

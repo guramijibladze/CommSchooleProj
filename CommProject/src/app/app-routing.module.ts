@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeaderComponent, NotFoundComponent } from './shell';
 
 
 const routes: Routes = [
@@ -12,6 +13,10 @@ const routes: Routes = [
     path: 'catalogue',
     loadChildren: () => 
       import('./catalogue/catalogue.module').then((m) => m.CatalogueModule)
+  },
+  {
+    path:'**',
+    component: NotFoundComponent
   }
 ];
 
@@ -19,4 +24,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  header = HeaderComponent;
+ }
