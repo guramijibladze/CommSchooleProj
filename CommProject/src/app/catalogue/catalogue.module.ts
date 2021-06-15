@@ -9,7 +9,8 @@ import { CatalogueRoutingModule } from './catalogue-routing.module'
     CatalogueComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CatalogueRoutingModule
   ]
 })
 export class CatalogueModule { }

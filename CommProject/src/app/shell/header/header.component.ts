@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit {
     return this.isLanguage('ka');
   }
 
+  get isLoggedIn(): boolean {
+    return this.auth.isLoggedIn;
+  }
+
   constructor(
     private translateService: TranslateService,
     private router: Router,
@@ -25,7 +29,7 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     goToSignIn(){
-      
+      // console.log('adsad')
       this.router.navigate(['sign-in']);
     }
 

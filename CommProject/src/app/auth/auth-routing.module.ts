@@ -10,10 +10,12 @@ const routes: Routes = [
         redirectTo: 'sing-in'
     },
     {
-        path: 'sing-in', component: SignInComponent
+        path: 'sign-in',
+        component: SignInComponent,
     },
     {
-        path: 'sing-up', component: SignUpComponent,
+        path: 'sign-up',
+        component: SignUpComponent,
     },
 ];
 
