@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +20,24 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private router: Router
+    private router: Router,
+    private auth:AuthService
     ) { }
+
+    goToSignIn(){
+      
+      this.router.navigate(['sign-in']);
+    }
+
+    goToSignUp(){
+      this.router.navigate(['sign-up']);
+    }
+
+    signOut(){
+      this.auth.signOut().then(()=>{
+        this.router.navigate(['sign-in'])
+      });
+    }
 
   ngOnInit(): void {
   }

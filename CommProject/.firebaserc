@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tbcommproj": {
+      "hosting": {
+        "CommProject": [
+          "tbcommproj"
+        ]
+      }
+    }
+  }
+}
