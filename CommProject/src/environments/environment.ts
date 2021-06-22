@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  movieApiBase: 'http://www.omdbapi.com/?apikey=540d1872',
   firebase: {
     apiKey: "AIzaSyCH1cisiThGRZF1bQgoNT_u0nnN8sdedvs",
     authDomain: "tbcommproj.firebaseapp.com",

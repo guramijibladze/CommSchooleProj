@@ -2,7 +2,8 @@
     "TITLE": "ფილმების კატალოგი",
 
     "errors": {
-        "NOT_FOUND": "გვერდი ვერ მოიძებნა"
+        "NOT_FOUND": "გვერდი ვერ მოიძებნა",
+        "ENTER_MOVIE_NAME": "გთხოვთ მიუთითოთ ფილმის სახელი!"
     },
     
     "auth":{
@@ -12,5 +13,10 @@
         "PASSWORD": "პაროლი",
         "REPEAT_PASSWORD": "პაროლის გამეორება",
         "SIGN_OUT": "გამოსვლა"
-    }
+    },
+    "catalogue": {
+        "ADD_MOVIE": "Add Movie",
+        "ENTER_MOVIE_NAME": "Enter Movie Name...",
+        "SEARCH": "Search"
+      }
 }

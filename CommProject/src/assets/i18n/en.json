@@ -2,7 +2,8 @@
     "TITLE": "Movie Catalogue",
 
     "errors": {
-        "NOT_FOUND": "Page not found"
+        "NOT_FOUND": "Page not found",
+        "ENTER_MOVIE_NAME": "You must enter movie name!"
     },
     
     "auth":{
@@ -12,6 +13,10 @@
         "PASSWORD": "Password",
         "REPEAT_PASSWORD": "Repeat Password",
         "SIGN_OUT": "Sign Out"
-    }
-    
+    },
+    "catalogue": {
+        "ADD_MOVIE": "ფილმის დამატება",
+        "ENTER_MOVIE_NAME": "ჩაწერეთ ფილმის სახელი...",
+        "SEARCH": "ძებნა"
+      }
 }

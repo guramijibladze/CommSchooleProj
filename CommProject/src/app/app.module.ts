@@ -10,6 +10,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { AuthModule } from './auth/auth.module'
 import { ShellModule } from './shell/shell.module';
 import { environment } from 'src/environments/environment';
+import { SharedModule } from './shared/shared.module';
+
 
 export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, 'assets/i18n/');
@@ -17,7 +19,8 @@ export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // Loading.ServiceComponent
   ],
   imports: [
     BrowserModule,  
@@ -25,6 +28,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
     HttpClientModule, 
     AuthModule,
     ShellModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

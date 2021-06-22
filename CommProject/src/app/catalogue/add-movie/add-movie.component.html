@@ -1,0 +1,42 @@
+<main>
+  <section class="py-3 text-center middle">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light text-white">
+        {{ "catalogue.ADD_MOVIE" | translate }}
+      </h1>
+    </div>
+  </section>
+
+  <div class="py-5">
+    <div class="container d-flex justify-content-center flex-column w-100">
+      <div class="row d-flex justify-content-center">
+        <div class="search-form d-flex justify-content-center flex-column">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="searchKey"
+            placeholder="{{ 'catalogue.ENTER_MOVIE_NAME' | translate }}"
+          />
+          <button
+            class="btn btn-outline-secondary mt-2"
+            (click)="search(searchKey)"
+          >
+            {{ "catalogue.SEARCH" | translate }}
+          </button>
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="hasError">
+            {{ "errors.ENTER_MOVIE_NAME" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-2 flex-row">
+        <div class="d-flex justify-content-center">
+          <span
+            (click)="fetchMovie(name)"
+            class="badge rounded-pill bg-success ms-1"
+            *ngFor="let name of lastThreeSearches"
+            >{{ name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
