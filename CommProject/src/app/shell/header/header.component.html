@@ -7,6 +7,7 @@
         </a>
         <div>
           <div class="d-flex align-items-center">
+            <ng-container *ngIf="isInitiated">
               <ng-container *ngIf="!isLoggedIn">
                 <button (click)="goToSignIn()" class="btn btn-outline-light me-2">
                   {{ "auth.SIGN_IN" | translate }}
@@ -15,9 +16,14 @@
                   {{ "auth.SIGN_UP" | translate }}
                 </button>
               </ng-container>
-            <button  (click)="signOut()" class="btn btn-danger">
-              {{ "auth.SIGN_OUT" | translate }}
-            </button>
+              <button
+                *ngIf="isLoggedIn"
+                (click)="signOut()"
+                class="btn btn-danger"
+              >
+                {{ "auth.SIGN_OUT" | translate }}
+              </button>
+            </ng-container>
             <button
               class="lang en ms-2"
               [class.inactive]="isKa"

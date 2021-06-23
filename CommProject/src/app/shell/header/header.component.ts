@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
     return this.auth.isLoggedIn;
   }
 
+  get isInitiated(): boolean {
+    return this.auth.initiated;
+  }
+
   constructor(
     private translateService: TranslateService,
     private router: Router,
