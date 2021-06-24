@@ -15,8 +15,10 @@
         "SIGN_OUT": "Sign Out"
     },
     "catalogue": {
-        "ADD_MOVIE": "ფილმის დამატება",
-        "ENTER_MOVIE_NAME": "ჩაწერეთ ფილმის სახელი...",
-        "SEARCH": "ძებნა"
+        "ADD_MOVIE": "Add Movie",
+        "ENTER_MOVIE_NAME": "Enter Movie Name...",
+        "SEARCH": "Search",
+        "WATCHED": "Watched",
+        "WATCH_LATER": "Watch Later"
       }
 }

@@ -39,4 +39,60 @@
       </div>
     </div>
   </div>
+
+  <div class="container p-2 border border-dark rounded shadow-lg p-3 mb-5 bg-body rounded">
+    <form [formGroup]="form">
+      <div class="section1 text-center shadow-none p-3 mb-5 bg-light rounded">
+        <span><b>view</b></span>
+        <div class="form-floating ">
+          <textarea 
+            class="form-control" 
+            formControlName="review"
+            id="review">
+          </textarea>
+          <label for="floatingTextarea">Comments</label>
+        </div>
+      </div>
+
+      <div class="section2 row text-center mt-2 ">
+        <div class="status col-6 ">
+          <span><b>status</b></span>
+          <select  
+            class="form-select mt-2"
+            formControlName="status">
+            <option [value]="status.Watched">
+              {{ "catalogue.WATCHED" | translate }}
+            </option>
+            <option [value]="status.WatchLater">
+              {{ "catalogue.WATCH_LATER" | translate }}
+            </option>
+          </select>
+        </div>
+
+          <div class="rating text-center col-6">
+            <span ><b>ratings</b></span>
+            <div class="rating mt-2" >
+              <span class="m-2 " *ngFor="let rating of ratings" >
+                <input 
+                  class="form-check-input m-1" 
+                  [value]="rating" 
+                  type="radio"
+                  formControlName="rating"
+                />
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <button 
+              type="submit" 
+              class="btn btn-primary" 
+              style="width: 80px;"
+              (click)="submit()">add</button>
+          </div>
+          <ng-container *ngIf="submitted && form.invalid && form.dirty ">hasError</ng-container>
+      </div>
+    </form>
+  </div>
+  
 </main>

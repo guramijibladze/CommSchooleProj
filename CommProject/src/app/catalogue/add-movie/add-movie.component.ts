@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { Status } from '../catalogue.model';
 import { MovieApiService } from '../services/movie-api.service';
 
 
@@ -16,10 +18,16 @@ export class AddMovieComponent implements OnInit {
 
   lastThreeSearches: string[] = [];
 
+  form: FormGroup;
+  status = Status;
+  ratings = [1,2,3,4,5];
+  submitted = false;
+
   constructor(
     private movieApiService: MovieApiService,
     private loadingServce: LoadingService,
-    private storage: StorageService
+    private storage: StorageService,
+    private fb: FormBuilder
   ) { }
 
   private addToLastSearches(name:string){
@@ -59,9 +67,21 @@ export class AddMovieComponent implements OnInit {
     }
   }
 
+  private createForm(){
+    this.form = new FormGroup({
+      review: new FormControl('', [Validators.required, Validators.minLength(10),]),
+      rating: new FormControl(),
+      status: new FormControl(Status.Watched),
+    });
+  }
+
+  submit(){
+    this.submitted = true;
+  }
 
   ngOnInit(): void {
     this.restoreState()
+    this.createForm()
   }
 
 }

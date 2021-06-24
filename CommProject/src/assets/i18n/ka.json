@@ -15,8 +15,11 @@
         "SIGN_OUT": "გამოსვლა"
     },
     "catalogue": {
-        "ADD_MOVIE": "Add Movie",
-        "ENTER_MOVIE_NAME": "Enter Movie Name...",
-        "SEARCH": "Search"
+        
+        "ADD_MOVIE": "ფილმის დამატება",
+        "ENTER_MOVIE_NAME": "ჩაწერეთ ფილმის სახელი...",
+        "SEARCH": "ძებნა",
+        "WATCHED": "ნანახი",
+        "WATCH_LATER": "მოგვიანების სანახავი"
       }
 }

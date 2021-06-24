@@ -4,7 +4,7 @@ import { CatalogueComponent } from './catalogue.component';
 import { CatalogueRoutingModule } from './catalogue-routing.module';
 import { AddMovieComponent } from './add-movie/add-movie.component'
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieApiService, MOVIE_BASE_URL } from './services/movie-api.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +18,8 @@ import { environment } from 'src/environments/environment';
     CommonModule,
     CatalogueRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     MovieApiService,
