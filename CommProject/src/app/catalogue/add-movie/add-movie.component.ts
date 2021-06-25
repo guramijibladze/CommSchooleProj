@@ -68,10 +68,10 @@ export class AddMovieComponent implements OnInit {
   }
 
   private createForm(){
-    this.form = new FormGroup({
-      review: new FormControl('', [Validators.required, Validators.minLength(10),]),
-      rating: new FormControl(),
-      status: new FormControl(Status.Watched),
+    this.form = this.fb.group({
+      review: ['', [Validators.required, Validators.minLength(10)]],
+      rating: 1,
+      status: Status.Watched,
     });
   }
 

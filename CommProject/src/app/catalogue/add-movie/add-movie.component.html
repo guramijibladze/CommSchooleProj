@@ -90,7 +90,18 @@
               style="width: 80px;"
               (click)="submit()">add</button>
           </div>
-          <ng-container *ngIf="submitted && form.invalid && form.dirty ">hasError</ng-container>
+          <ng-container *ngIf="submitted && form.invalid">
+            <div  class="alert alert-danger mt-2" 
+                  role="alert" 
+                  *ngIf="form.controls.review?.errors?.required">
+              {{ "errors.review" | translate }}
+            </div>
+            <div  class="alert alert-danger mt-2" 
+                  role="alert" 
+                  *ngIf="form.controls.review?.errors?.minlength">
+              {{ "errors.minLength" | translate }}
+            </div>
+          </ng-container>
       </div>
     </form>
   </div>

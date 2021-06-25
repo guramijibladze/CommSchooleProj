@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -26,10 +27,15 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signUp({email, password}:SignUpForm){
-    // console.log(password)
-    if(!email || !password){
-      return
+  signUp(form: NgForm){
+    if (form.invalid) {
+      return;
+    }
+
+    const { email, password } = form.value;
+
+    if (!email || !password) {
+      return;
     }
 
     this.loadingService.start();

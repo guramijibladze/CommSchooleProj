@@ -23,8 +23,7 @@ export class SignInComponent implements OnInit {
     private loadingService: LoadingService
     ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   signIn({email, password}:SignInForm){
     if(!email || !password){
