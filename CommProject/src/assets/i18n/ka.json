@@ -23,6 +23,12 @@
         "ENTER_MOVIE_NAME": "ჩაწერეთ ფილმის სახელი...",
         "SEARCH": "ძებნა",
         "WATCHED": "ნანახი",
-        "WATCH_LATER": "მოგვიანების სანახავი"
+        "WATCH_LATER": "მოგვიანების სანახავი",
+        "TOMORROW": "ხვალ",
+        "THIS_WEEK": "ამ კვირას",
+        "THIS_MONTH": "ამ თვეს",
+        "THIS_YEAR": "ამ წელს",
+        "SELECT": "არჩევა...",
+        "MOVIE_HAS_BEEN_ADDED": "ფილმი დაემატა"
       }
 }

@@ -1,10 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore'
+import {
+  catchError,
+  finalize,
+  map,
+  switchMap,
+  takeUntil,
+  
+} from 'rxjs/operators';
+import { forkJoin, Observable, of, Subject, from } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { Status } from '../catalogue.model';
+import { Movie, 
+  RATINGS, 
+  Status, 
+  WhenToWatchSelect, 
+  WHEN_TO_WATCH,  
+  Country, 
+  MovieResult,  
+  // MovieBody, 
+  AddMovieBody} 
+  from '../catalogue.model';
 import { MovieApiService } from '../services/movie-api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,6 +32,8 @@ import { MovieApiService } from '../services/movie-api.service';
   styleUrls: ['./add-movie.component.scss']
 })
 export class AddMovieComponent implements OnInit {
+  private unsubscribe$ = new Subject();
+
   searchKey:string;
   hasError:boolean;
 
@@ -20,15 +41,43 @@ export class AddMovieComponent implements OnInit {
 
   form: FormGroup;
   status = Status;
-  ratings = [1,2,3,4,5];
   submitted = false;
+
+  get canWatchLater(): boolean {
+    return !!this.form.get('whenToWatch');
+  }
+
+  get whenToWatch(): WhenToWatchSelect[] {
+    return WHEN_TO_WATCH;
+  }
+
+  get ratings(): number[]{
+    return RATINGS;
+  }
+
+  private _selectedMovie: Movie;
+
+  get selectedMovie(): Movie {
+    return this._selectedMovie;
+  }
+
 
   constructor(
     private movieApiService: MovieApiService,
     private loadingServce: LoadingService,
     private storage: StorageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store:AngularFirestore,
+    private auth: AuthService
   ) { }
+
+  getCountryFlag(code: string): string {
+    return `https://www.countryflags.io/${code}/shiny/64.png`;
+  }
+
+  getCountryPopulation(country: Country): string {
+    return `Popultion of ${country.code}: ${country.population}`;
+  }
 
   private addToLastSearches(name:string){
     if(this.lastThreeSearches.length < 3){
@@ -40,13 +89,55 @@ export class AddMovieComponent implements OnInit {
     this.storage.set('lastThreeSearches', this.lastThreeSearches);
   }
 
+  private getCountryWithPopulation(code: string): Observable<Country> {
+    return this.movieApiService.getCountry(code).pipe(
+      map((c) => {
+        const country = c[0];
+
+        return {
+          code: country.alpha2Code,
+          population: country.population,
+        };
+      }),
+      catchError(() => {
+        return of(null);
+      })
+    );
+  }
+
+  private mapMovie(movie: MovieResult, countries: Country[]): Movie {
+    return {
+      actors: movie.Actors,
+      countries,
+      director: movie.Director,
+      genre: movie.Genre.split(', '),
+      imdbId: movie.imdbID,
+      plot: movie.Plot,
+      poster: movie.Poster,
+      title: movie.Title,
+      year: movie.Year,
+    };
+  }
+
   fetchMovie(name: string) {
     this.loadingServce.start();
     this.movieApiService
       .getMovieByName(name)
-      .pipe(finalize(() => (this.loadingServce.stop(), (this.searchKey = ''))))
-      .subscribe((x) => console.log(x));
+      .pipe(finalize(() => {
+        this.loadingServce.stop(), 
+        this.searchKey = ''
+        }), 
+        switchMap((movie) => {
+          const countries = movie.Country.split(', ');
+          return forkJoin(
+            countries.map((code) => this.getCountryWithPopulation(code))
+          ).pipe(
+            map<Country[], Movie>((countries) => this.mapMovie(movie, countries))
+          )
+        }))
+      .subscribe((result) => (this._selectedMovie = result));
   }
+
 
   search(key: string) {
     if (!key) {
@@ -77,11 +168,50 @@ export class AddMovieComponent implements OnInit {
 
   submit(){
     this.submitted = true;
+
+    if(this.form.invalid){
+      return
+    }
+
+    const value = this.form.value;
+
+    const body: AddMovieBody = {
+      imdbId: this._selectedMovie.imdbId,
+      uid: this.auth.userId,
+      rating: value.rating,
+      review: value.review,
+      status: value.status,
+      whenToWatch: value.whenToWatch || '',
+    };
+   
+    this.loadingServce.start();
+    from(this.store.collection('catalogue').add(body))
+      .pipe(finalize(() => this.loadingServce.stop()))
+      .subscribe();
+  }
+
+  private addControlsByStatus(status: Status) {
+    switch (status) {
+      case Status.WatchLater:
+        this.form.addControl(
+          'whenToWatch',
+          new FormControl(null, Validators.required)
+        );
+        break;
+      case Status.Watched:
+        this.form.removeControl('whenToWatch');
+        break;
+    }
   }
 
   ngOnInit(): void {
     this.restoreState()
     this.createForm()
+
+    this.form
+    .get('status')
+    .valueChanges.pipe(takeUntil(this.unsubscribe$))
+    .subscribe((status) => this.addControlsByStatus(status));
   }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CountryResult, MovieResult } from '../catalogue.model';
 
 export const MOVIE_BASE_URL = new InjectionToken<string>('movie api token');
 
@@ -12,7 +13,13 @@ export class MovieApiService {
       ) {}
     
       // TODO: make this Observable typed
-      getMovieByName(name: string): Observable<any> {
-        return this.http.get(`${this.baseUrl}&t=${name}`);
+      getMovieByName(name: string): Observable<MovieResult> {
+        return this.http.get<MovieResult>(`${this.baseUrl}&t=${name}`);
+      }
+
+      getCountry(code: string): Observable<CountryResult> {
+        return this.http.get<CountryResult>(
+          `https://restcountries.eu/rest/v2/name/${code}?fullText=true`
+        );
       }
 }

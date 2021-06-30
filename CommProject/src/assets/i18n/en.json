@@ -23,6 +23,12 @@
         "ENTER_MOVIE_NAME": "Enter Movie Name...",
         "SEARCH": "Search",
         "WATCHED": "Watched",
-        "WATCH_LATER": "Watch Later"
+        "WATCH_LATER": "Watch Later",
+        "TOMORROW": "Tomorrow",
+        "THIS_WEEK": "This Week",
+        "THIS_MONTH": "This Month",
+        "THIS_YEAR": "This Year",
+        "SELECT": "Select...",
+        "MOVIE_HAS_BEEN_ADDED": "Movie has been added"
       }
 }
