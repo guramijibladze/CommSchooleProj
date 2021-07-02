@@ -51,7 +51,8 @@ export enum Status {
     Country: string;
   }
 
-  export interface AddMovieBody {
+  // ეს არის ინტერფეისი რომლითაც ვინახავთ და მოგვაქ დატა ფაიერბეიზიდან
+  export interface MovieBody {
     imdbId: string;
     uid: string;
     review: string;
@@ -80,3 +81,8 @@ export const WHEN_TO_WATCH: WhenToWatchSelect[] = [
 ];
 
 export const RATINGS = [1, 2, 3, 4, 5];
+
+export interface MovieListItem {
+  data: MovieBody;
+  movie: MovieResult;
+}

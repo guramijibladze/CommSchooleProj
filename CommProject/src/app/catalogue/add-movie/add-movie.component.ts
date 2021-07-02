@@ -6,8 +6,7 @@ import {
   finalize,
   map,
   switchMap,
-  takeUntil,
-  
+  takeUntil
 } from 'rxjs/operators';
 import { forkJoin, Observable, of, Subject, from } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -20,10 +19,13 @@ import { Movie,
   Country, 
   MovieResult,  
   // MovieBody, 
-  AddMovieBody} 
+  MovieBody} 
   from '../catalogue.model';
 import { MovieApiService } from '../services/movie-api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { FireApiService } from '../services';
 
 
 @Component({
@@ -67,8 +69,10 @@ export class AddMovieComponent implements OnInit {
     private loadingServce: LoadingService,
     private storage: StorageService,
     private fb: FormBuilder,
-    private store:AngularFirestore,
-    private auth: AuthService
+    private fireApiService: FireApiService,
+    private auth: AuthService,
+    private toastr: ToastrService,
+    private translateService: TranslateService
   ) { }
 
   getCountryFlag(code: string): string {
@@ -175,7 +179,7 @@ export class AddMovieComponent implements OnInit {
 
     const value = this.form.value;
 
-    const body: AddMovieBody = {
+    const body: MovieBody = {
       imdbId: this._selectedMovie.imdbId,
       uid: this.auth.userId,
       rating: value.rating,
@@ -185,9 +189,25 @@ export class AddMovieComponent implements OnInit {
     };
    
     this.loadingServce.start();
-    from(this.store.collection('catalogue').add(body))
+    this.fireApiService
+      .addMovie(body)
       .pipe(finalize(() => this.loadingServce.stop()))
-      .subscribe();
+      .subscribe(() => this.reset())
+  }
+
+  // არესეტებს გვერდს ინფოს შენახვის დროს, ცარიელი გვერდები რომ იყოს
+  // და ვალიდაციამაც სწორად იმუშაოს
+  private reset(){
+    this._selectedMovie = null;
+    
+    this.form.reset();
+    this.form.updateValueAndValidity();
+
+    this.submitted = false;
+
+    this.translateService
+    .get('catalogue.MOVIE_HAS_BEEN_ADDED')
+    .subscribe((value) => this.toastr.success(value))
   }
 
   private addControlsByStatus(status: Status) {

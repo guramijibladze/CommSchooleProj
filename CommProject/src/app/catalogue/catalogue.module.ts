@@ -5,14 +5,17 @@ import { CatalogueRoutingModule } from './catalogue-routing.module';
 import { AddMovieComponent } from './add-movie/add-movie.component'
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MovieApiService, MOVIE_BASE_URL } from './services/movie-api.service';
 import { environment } from 'src/environments/environment';
+import { MovieListComponent, MovieListItemComponent } from './movie-list';
+import { FireApiService, MovieApiService, MOVIE_BASE_URL } from './services';
 
 
 @NgModule({
   declarations: [
     CatalogueComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    MovieListComponent,
+    MovieListItemComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { environment } from 'src/environments/environment';
   ],
   providers: [
     MovieApiService,
+    FireApiService,
     {
       provide: MOVIE_BASE_URL,
       useValue: environment.movieApiBase,

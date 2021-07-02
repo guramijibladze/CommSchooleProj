@@ -17,6 +17,10 @@ export class MovieApiService {
         return this.http.get<MovieResult>(`${this.baseUrl}&t=${name}`);
       }
 
+      getMovieByImdbId(imdbId: string): Observable<MovieResult> {
+        return this.http.get<MovieResult>(`${this.baseUrl}&i=${imdbId}`);
+      }
+
       getCountry(code: string): Observable<CountryResult> {
         return this.http.get<CountryResult>(
           `https://restcountries.eu/rest/v2/name/${code}?fullText=true`
