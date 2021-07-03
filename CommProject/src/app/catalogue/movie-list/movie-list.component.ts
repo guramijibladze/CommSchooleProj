@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
-import {  MovieBody, MovieListItem, MovieResult } from '../catalogue.model';
+import {  MovieBody, MovieListItem, MovieResult, MovieWithId } from '../catalogue.model';
 import { FireApiService, MovieApiService } from '../services';
 
 @Component({
@@ -19,7 +19,7 @@ export class MovieListComponent implements OnInit {
     private loadingService: LoadingService
     ) { }
 
-    private mapMovieData(data:MovieBody[]){
+    private mapMovieData(data:MovieWithId[]){
       return (data.map((d) => this.movieApiService.getMovieByImdbId(d.imdbId)
       .pipe(map<MovieResult, MovieListItem>((movie) => ({
         data: d,

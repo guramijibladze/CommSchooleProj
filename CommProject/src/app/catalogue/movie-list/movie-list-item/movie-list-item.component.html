@@ -7,11 +7,13 @@
       <p class="card-text">
         {{ item.movie.Plot }}
       </p>
+      <p>Rating: {{ item.data.rating }}/5</p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <button
             type="button"
             class="btn btn-sm btn-outline-secondary"
+            (click)="goToDetails()"
           >
             Details
           </button>

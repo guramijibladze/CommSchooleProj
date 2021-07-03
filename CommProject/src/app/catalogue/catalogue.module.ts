@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { MovieListComponent, MovieListItemComponent } from './movie-list';
 import { FireApiService, MovieApiService, MOVIE_BASE_URL } from './services';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { FireApiService, MovieApiService, MOVIE_BASE_URL } from './services';
     CatalogueComponent,
     AddMovieComponent,
     MovieListComponent,
-    MovieListItemComponent
+    MovieListItemComponent,
+    MovieDetailsComponent
   ],
   imports: [
     CommonModule,

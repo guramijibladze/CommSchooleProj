@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { CatalogueComponent } from './catalogue.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+
 
 
 const routes: Routes = [
@@ -12,7 +14,11 @@ const routes: Routes = [
     {
       path: 'add',
       component: AddMovieComponent
-    }
+    },
+    {
+      path: ':id',
+      component: MovieDetailsComponent,
+    },
   ]
   
 @NgModule({

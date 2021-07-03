@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieBody, MovieListItem } from '../../catalogue.model';
-import { MovieApiService } from '../../services';
+// import { MovieApiService } from '../../services';
 
 @Component({
   selector: 'app-movie-list-item',
@@ -10,7 +11,13 @@ import { MovieApiService } from '../../services';
 export class MovieListItemComponent implements OnInit {
   @Input() item: MovieListItem;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
+  goToDetails(){
+    this.router.navigate([`catalogue/${this.item.data.id}`]);
+  }
 
   ngOnInit(): void {
    

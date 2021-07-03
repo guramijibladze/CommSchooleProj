@@ -61,6 +61,9 @@ export enum Status {
     whenToWatch: WhenToWatch;
   }
 
+  // ინტერსექშენ ტაიპით ვახთენთ აიდის დამატებას მუვი ბოდიში
+  export type MovieWithId = MovieBody & { id: string };
+
 export const WHEN_TO_WATCH: WhenToWatchSelect[] = [
   {
     label: 'catalogue.TOMORROW',
@@ -83,6 +86,6 @@ export const WHEN_TO_WATCH: WhenToWatchSelect[] = [
 export const RATINGS = [1, 2, 3, 4, 5];
 
 export interface MovieListItem {
-  data: MovieBody;
+  data: MovieWithId;
   movie: MovieResult;
 }

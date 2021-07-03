@@ -1,0 +1,19 @@
+<h3>Stored Data</h3>
+<ng-container *ngIf="storeData$ | async as storeData">
+  <div>{{ storeData.review }}</div>
+  <div>{{ storeData.rating }}</div>
+  <div>{{ storeData.status }}</div>
+  <div>{{ storeData.whenToWatch }}</div>
+</ng-container>
+
+<h3>API Data</h3>
+<ng-container *ngIf="movieData$ | async as movieData">
+  <div>{{ movieData.Title }}</div>
+  <div>{{ movieData.Year }}</div>
+  <div>{{ movieData.Director }}</div>
+  <div>{{ movieData.Actors }}</div>
+  <div>{{ movieData.Genre }}</div>
+  <div>{{ movieData.Plot }}</div>
+  <div><img [src]="movieData.Poster" /></div>
+  <div>{{ movieData.Country }}</div>
+</ng-container>
