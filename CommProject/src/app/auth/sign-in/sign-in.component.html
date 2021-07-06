@@ -1,9 +1,9 @@
 <main>
-    <section class="py-5 text-center middle">
+    <div class="py-5 text-center middle" >
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light text-white">{{ "auth.SIGN_IN" | translate }}</h1>
       </div>
-    </section>
+    </div>
     <section class="py-5 d-flex justify-content-center">
       <form (ngSubmit)="signIn(form.value)" #form="ngForm" [mustMatch]="['password','repeatPassword']">
         <div class="form-floating mb-2">

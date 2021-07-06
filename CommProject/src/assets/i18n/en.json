@@ -29,6 +29,9 @@
         "THIS_MONTH": "This Month",
         "THIS_YEAR": "This Year",
         "SELECT": "Select...",
-        "MOVIE_HAS_BEEN_ADDED": "Movie has been added"
+        "MOVIE_HAS_BEEN_ADDED": "Movie has been added",
+        "WELCOME_TO_CATALOGUE": "Welcome To Movie Catalogue",
+        "ADD_WITH_RATING": "You can add your favourite movies with rating and reviews."
+        
       }
 }

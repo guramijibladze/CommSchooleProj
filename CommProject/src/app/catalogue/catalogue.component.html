@@ -1,17 +1,17 @@
 <main>
-    <section class="py-5 text-center middle">
+    <section class=" py-5 text-center middle">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light text-white">Welcome to Movie Catalogue</h1>
+        <h1 class="fw-light text-white">{{ "catalogue.WELCOME_TO_CATALOGUE" | translate}}</h1>
         <p class="lead text-white">
-          You can add your favourite movies with rating and reviews.
+          {{ "catalogue.ADD_WITH_RATING" | translate }}
         </p>
-        <p>
-          <a class="btn btn-outline-light" routerLink="add">Add Movie</a>
-        </p>
+        <div class="body" style="margin-top: 70px;" >
+          <a class="btn btn-outline-light" routerLink="add">{{ "catalogue.ADD_MOVIE" | translate}}</a>
+        </div>
       </div>
     </section>
   
-    <section>
+    <section class="">
       <app-movie-list></app-movie-list>
     </section>
   </main>
