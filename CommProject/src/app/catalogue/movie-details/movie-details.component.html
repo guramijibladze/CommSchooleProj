@@ -1,19 +1,48 @@
-<h3>Stored Data</h3>
-<ng-container *ngIf="storeData$ | async as storeData">
-  <div>{{ storeData.review }}</div>
-  <div>{{ storeData.rating }}</div>
-  <div>{{ storeData.status }}</div>
-  <div>{{ storeData.whenToWatch }}</div>
-</ng-container>
-
-<h3>API Data</h3>
-<ng-container *ngIf="movieData$ | async as movieData">
-  <div>{{ movieData.Title }}</div>
-  <div>{{ movieData.Year }}</div>
-  <div>{{ movieData.Director }}</div>
-  <div>{{ movieData.Actors }}</div>
-  <div>{{ movieData.Genre }}</div>
-  <div>{{ movieData.Plot }}</div>
-  <div><img [src]="movieData.Poster" /></div>
-  <div>{{ movieData.Country }}</div>
-</ng-container>
+<div class="main container">
+  <div class="text-center mt-5">
+    <h3>{{ "title.USER_RATE" | translate }}</h3>
+    <div  *ngIf="storeData$ | async as storeData"
+          class="row mt-5">
+      <div class="col">{{ storeData.review }}</div>
+      <div class="col"><b>Rating: 5/{{ storeData.rating }}</b></div>
+      <div class="col">{{ storeData.status }}</div>
+      <div class="col">{{ storeData.whenToWatch }}</div>
+    </div>
+  </div>
+<hr/>
+  
+  <div  *ngIf="movieData$ | async as movieData"
+        class="row mt-5 p-3 border rounded"
+        style="background-color: rgb(249, 251, 251);">
+    <div class="movieDataInfo col"
+          style="position: relative;">
+          <div style="position: absolute; top: 0px!important;">
+            <h3><b>{{ "title.MOVIE_INFO" | translate }}</b></h3>
+            <hr/>
+          </div>
+          <div  class="movie-info"
+                style="position: absolute; top:170px">
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.MOVIE_TITLE" | translate }}</strong>{{ movieData.Title }}</div>
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.PRODUCED" | translate }} </strong>{{ movieData.Country }}</div>
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.YEAR" | translate }} </strong>{{ movieData.Year }}</div>
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.DIRECTOR" | translate }} </strong>{{ movieData.Director }}</div>
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.ACTORS" | translate }} </strong>{{ movieData.Actors }}</div>
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.GENRE" | translate }} </strong>{{ movieData.Genre }}</div>
+            <div class="mt-2"><strong>{{ "MOVIEDETAILS.DESCRIPTION" | translate }} </strong>{{ movieData.Plot }}</div>
+          </div>
+          <div style="position: absolute; bottom:0px">
+            <fa-icon
+              (click)="goBack()"
+              [icon]="faArrowLeft"
+              style="font-size: 30px; 
+                      cursor: pointer;">
+            </fa-icon>
+          </div>
+         
+    </div>
+    <div class="col">
+      <img [src]="movieData.Poster" style="width: 500px; height: 600px;"/>
+    </div>
+   
+  </div>
+</div>

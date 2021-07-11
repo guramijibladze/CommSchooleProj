@@ -14,6 +14,8 @@ import { ShellModule } from './shell/shell.module';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -42,6 +44,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient): TranslateHttpLoade
       defaultLanguage: 'ka',
     }),
     AngularFireModule.initializeApp(environment.firebase),
+    NgbModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

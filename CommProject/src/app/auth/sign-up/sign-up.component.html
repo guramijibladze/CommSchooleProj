@@ -63,7 +63,7 @@
           <div  class="alert alert-danger mt-2" 
                 role="alert" 
                 *ngIf="form.controls.repeatPassword?.errors?.required">
-                გთხოვთ გაიმეოროთ პაროლი
+              {{ "auth.REPEAT_PASSWORD" | translate }}
           </div>
           <div  class="alert alert-danger mt-2" 
                 role="alert" 

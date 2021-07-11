@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { delay, finalize, switchMap, tap } from 'rxjs/operators';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Observable, from } from 'rxjs';
+import { tap, finalize } from 'rxjs/operators';
+// import { LoadingService } from 'src/app/services/loading.service';
 import { MovieBody, MovieResult } from '../catalogue.model';
 import { FireApiService, MovieApiService } from '../services';
 
@@ -13,12 +15,14 @@ import { FireApiService, MovieApiService } from '../services';
 export class MovieDetailsComponent implements OnInit {
   storeData$: Observable<MovieBody>;
   movieData$: Observable<MovieResult>;
+  faArrowLeft = faArrowLeft;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private fireApiService: FireApiService,
     private movieApiService: MovieApiService,
-    private router: Router
+    private router: Router,
+    // private loadingService: LoadingService
   ) { }
 
   private initMovieDetails() {
@@ -36,7 +40,13 @@ export class MovieDetailsComponent implements OnInit {
       );
   }
 
+  goBack(){
+    // this.loadingService.start();
+    this.router.navigate(['catalogue']);
+  }
+
   ngOnInit() {
     this.initMovieDetails();
   }
+
 }

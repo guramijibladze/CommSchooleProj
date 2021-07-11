@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { MovieListComponent, MovieListItemComponent } from './movie-list';
 import { FireApiService, MovieApiService, MOVIE_BASE_URL } from './services';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -18,14 +19,15 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     AddMovieComponent,
     MovieListComponent,
     MovieListItemComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
   ],
   imports: [
     CommonModule,
     CatalogueRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [
     MovieApiService,
@@ -35,4 +37,5 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
       useValue: environment.movieApiBase,
     },]
 })
-export class CatalogueModule { }
+export class CatalogueModule {
+ }

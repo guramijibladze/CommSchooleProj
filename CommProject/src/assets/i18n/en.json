@@ -5,6 +5,7 @@
         "NOT_FOUND": "Page not found",
         "ENTER_MOVIE_NAME": "You must enter movie name!",
         "review": "Review is obligatory",
+        "WHENN_TO_WATCH_REQUIRE":"Please mark when you want to watch",
         "minLength": "Min length required 10 ymbol",
         "Email.signIn": "Email is required",
         "PassWord.signIn": "PassWord is required"
@@ -31,7 +32,24 @@
         "SELECT": "Select...",
         "MOVIE_HAS_BEEN_ADDED": "Movie has been added",
         "WELCOME_TO_CATALOGUE": "Welcome To Movie Catalogue",
-        "ADD_WITH_RATING": "You can add your favourite movies with rating and reviews."
-        
-      }
+        "ADD_WITH_RATING": "You can add your favourite movies with rating and reviews.",
+        "MOVIE_REVIEW":"rewview",
+        "MOVIE_RATING":"rating",
+        "MOVIE_STATUS":"status",
+        "MOVIE_COMMENTS":"Comments",
+        "WHEN_TO_WATCH": "when to watch"
+      },
+    "title":{
+        "USER_RATE":"User Rate",
+        "MOVIE_INFO": "Movie Info"
+    },
+    "MOVIEDETAILS":{
+        "MOVIE_TITLE":"Movie Title: ",
+        "PRODUCED":"Produced By: ",
+        "YEAR": "Year: ",
+        "DIRECTOR":"Director: ",
+        "ACTORS":"Actors: ",
+        "GENRE":"Genre: ",
+        "DESCRIPTION":"Description: "
+    }
 }
