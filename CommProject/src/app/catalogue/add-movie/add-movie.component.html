@@ -41,7 +41,7 @@
 
   <!-- ხატავს მოძებნილ ფილმებს -->
   <div class="row text-center" *ngIf="selectedMovie">
-    <h3>{{ selectedMovie.title }}</h3>
+    <h2>{{ selectedMovie.title }}</h2>
       <div class="col gx-5 border rounded" *ngFor="let country of selectedMovie.countries">
           <ng-container  id="img" *ngIf="country">
               <img

@@ -25,8 +25,4 @@ export class MovieListItemComponent implements OnInit {
    
   }
 
-  // DeleteItem(){
-  //   this.fireApiService.getMovies().subscribe(x => console.log(x)) 
-  // }
-
 }

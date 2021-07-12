@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     goToSignIn(){
-      // console.log('adsad')
       this.router.navigate(['sign-in']);
     }
 
