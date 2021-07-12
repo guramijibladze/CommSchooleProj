@@ -11,7 +11,6 @@
     "build:stats": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/comm-project/stats.json",
     "postinstall": "ng build --prod"
- 
   },
   "private": true,
   "dependencies": {
