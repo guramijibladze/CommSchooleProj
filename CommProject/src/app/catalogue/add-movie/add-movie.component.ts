@@ -9,13 +9,15 @@ import { Movie,
   WHEN_TO_WATCH,   
   MovieBody,
   WhenToWatch,
-  Country} 
+  Country,
+  EventBusEvent} 
   from '../catalogue.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { AddMovieFacade } from './add-movie.facade';
 import { AddMovieStorage } from './add-movie.storage';
+import { EventBusService } from 'src/app/services/event-bus.service';
 
 
 @Component({
@@ -70,7 +72,8 @@ export class AddMovieComponent implements OnInit {
     private auth: AuthService,
     private toastr: ToastrService,
     private translateService: TranslateService,
-    private facade: AddMovieFacade
+    private facade: AddMovieFacade,
+    private eventBusService: EventBusService
   ) { }
 
 
@@ -152,6 +155,16 @@ export class AddMovieComponent implements OnInit {
     .get('status')
     .valueChanges.pipe(takeUntil(this.unsubscribe$))
     .subscribe((status) => this.addControlsByStatus(status));
+
+    this.eventBusService
+      .on(EventBusEvent.ResetForm)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => this.reset());
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

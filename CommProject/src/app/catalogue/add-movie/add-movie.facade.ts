@@ -49,7 +49,10 @@ export class AddMovieFacade {
           this.searchKey = '';
         }),
         switchMap((movie) => {
-          const countries = movie?.Country.split(', ');
+          const countries = movie?.Country?.split(', ');
+          if(!countries){
+            return of(null)
+          }
           return forkJoin(
             countries.map((code) => this.getCountryWithPopulation(code))
           ).pipe(

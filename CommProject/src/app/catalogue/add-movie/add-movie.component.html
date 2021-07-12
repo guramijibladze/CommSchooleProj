@@ -42,7 +42,7 @@
   <!-- ხატავს მოძებნილ ფილმებს -->
   <div class="row text-center" *ngIf="selectedMovie">
     <h3>{{ selectedMovie.title }}</h3>
-      <div class="col-6 gx-5 border rounded" *ngFor="let country of selectedMovie.countries">
+      <div class="col gx-5 border rounded" *ngFor="let country of selectedMovie.countries">
           <ng-container  id="img" *ngIf="country">
               <img
                 [src]="getCountryFlag(country.code)"

@@ -1,18 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MovieBody, MovieListItem } from '../../catalogue.model';
-// import { MovieApiService } from '../../services';
+import { MovieListItem } from '../../catalogue.model';
+import { FireApiService } from '../../services';
 
 @Component({
   selector: 'app-movie-list-item',
   templateUrl: './movie-list-item.component.html',
-  styleUrls: ['./movie-list-item.component.scss']
+  styleUrls: ['./movie-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MovieListItemComponent implements OnInit {
   @Input() item: MovieListItem;
-
+  
   constructor(
-    private router: Router
+    private router: Router,
+    private fireApiService: FireApiService,
   ) { }
 
   goToDetails(){
@@ -22,5 +24,9 @@ export class MovieListItemComponent implements OnInit {
   ngOnInit(): void {
    
   }
+
+  // DeleteItem(){
+  //   this.fireApiService.getMovies().subscribe(x => console.log(x)) 
+  // }
 
 }

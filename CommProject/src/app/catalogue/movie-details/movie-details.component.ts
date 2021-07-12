@@ -42,7 +42,6 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   goBack(){
-    // this.loadingService.start();
     this.router.navigate(['catalogue']);
   }
 
