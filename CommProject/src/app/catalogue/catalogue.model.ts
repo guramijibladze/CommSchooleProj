@@ -89,3 +89,7 @@ export interface MovieListItem {
   data: MovieWithId;
   movie: MovieResult;
 }
+
+export enum EventBusEvent{
+  ResetForm = 'resetForm'
+}

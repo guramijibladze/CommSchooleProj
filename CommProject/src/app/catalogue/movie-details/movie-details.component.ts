@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Observable, from } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
-// import { LoadingService } from 'src/app/services/loading.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { MovieBody, MovieResult } from '../catalogue.model';
 import { FireApiService, MovieApiService } from '../services';
 
@@ -22,20 +22,21 @@ export class MovieDetailsComponent implements OnInit {
     private fireApiService: FireApiService,
     private movieApiService: MovieApiService,
     private router: Router,
-    // private loadingService: LoadingService
+    private loadingService: LoadingService
   ) { }
 
   private initMovieDetails() {
     // TODO: fix loading
     const id = this.activatedRoute.snapshot.params['id'];
+    this.loadingService.start()
     this.storeData$ = this.fireApiService
       .getMovie(id)
       .pipe(
         tap(
           (movie) =>
             (this.movieData$ = this.movieApiService.getMovieByImdbId(
-              movie.imdbId
-            ))
+              movie.imdbId)
+              .pipe(finalize(() => this.loadingService.stop())))
         )
       );
   }

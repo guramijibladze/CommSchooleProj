@@ -3,7 +3,7 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, finalize, map, switchMap } from 'rxjs/operators';
 import { EventBusService } from 'src/app/services/event-bus.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { Country, Movie, MovieBody, MovieResult } from '../catalogue.model';
+import { Country, EventBusEvent, Movie, MovieBody, MovieResult } from '../catalogue.model';
 import { FireApiService, MovieApiService } from '../services';
 import { AddMovieStorage } from './add-movie.storage';
 
@@ -111,7 +111,7 @@ export class AddMovieFacade {
       .pipe(finalize(() => this.loadingServce.stop()))
       .subscribe(() => {
         this._selectedMovie = null;
-        this.eventBusService.emit('resetForm');
+        this.eventBusService.emit(EventBusEvent.ResetForm);
       });
   }
 

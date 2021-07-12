@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, Observable, of } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, finalize } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
-import {  MovieBody, MovieListItem, MovieResult, MovieWithId } from '../catalogue.model';
+import { MovieListItem, MovieResult, MovieWithId } from '../catalogue.model';
 import { FireApiService, MovieApiService } from '../services';
 
 @Component({
@@ -28,10 +28,11 @@ export class MovieListComponent implements OnInit {
     }
 
   ngOnInit() {
-    // this.loadingService.start()
+    this.loadingService.start()
     this.movies$ = this.fireApiService
       .getMovies()
-      .pipe(switchMap((data) => forkJoin(this.mapMovieData(data))))
+      .pipe(switchMap((data) => forkJoin(this.mapMovieData(data))),
+       finalize(() => this.loadingService.stop()))
 
   }
 
