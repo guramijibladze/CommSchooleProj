@@ -8,6 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build:stats": "ng build --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/comm-project/stats.json",
+    "postinstall": "ng build --prod",
     "compodoc": "npx compodoc -p tsconfig.json src"
   },
   "private": true,
